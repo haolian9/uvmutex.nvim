@@ -16,7 +16,6 @@ local C = ffi.C
 
 local function main()
   local mutex_raw = ffi.new("char[?]", C.uv_mutex_size())
-  ffi.gc(mutex_raw, function() end)
   local mutex = C.uv_mutex_new(mutex_raw)
   print("init", C.uv_mutex_init(mutex))
   print("trylock#1", C.uv_mutex_trylock(mutex))
